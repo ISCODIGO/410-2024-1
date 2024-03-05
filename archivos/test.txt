@@ -1,0 +1,15 @@
+data = {
+    1: {"fecha": "2024-02-18", "ciudad": "Tegucigalpa"},
+    2: {},
+    3: {},
+}
+
+> Escriba 
+> Buscar por:
+> 1. fecha
+> 2. ciudad
+> 3. venta
+> 1
+> Buscar la fecha: 2024-02-18
+>2024-02-18,Tegucigalpa,12304.67
+>2024-02-18,San Pedro Sula,78992.22
