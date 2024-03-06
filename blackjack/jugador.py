@@ -7,7 +7,7 @@ class Jugador:
 
     def __str__(self) -> str:
         return f"{self.nombre}({self.creditos})"
-    
+
     def quedarse(self):
         self.continuar = False
 
