@@ -1,12 +1,10 @@
 """
-# Opcion 1
-import carta
-c = carta.Carta()
+1. Falta visibilidad de cartas
 """
 
-from carta import Carta
-from jugador import Jugador
-from baraja import Baraja
+from juego import Juego
 
 
-b = Baraja()
+play = Juego()
+play.crear_jugadores()
+play.ronda()

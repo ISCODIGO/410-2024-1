@@ -1,39 +1,33 @@
 import random
-from carta import Carta
+from carta import Carta, Figura
 
 
 class Baraja:
     def __init__(self) -> None:
         self.baraja = [None] * 52  # una lista con 52 espacios None
-        self.actual = 0  # lleva el recuento de la carta que sigue
+        self.actual = 0  # lleva el recuento de la carta a entregar
         index = 0
-        for fig in Carta.FIGURAS:
-            for val in Carta.VALORES:
-                # print(index, fig, val)
-                self.baraja[index] = Carta(valor=val, figura=fig)
+        for val in Carta.VALORES:
+            for figura in Figura:
+                self.baraja[index] = Carta(valor=val, figura=figura)
                 index += 1
 
-    def mezclar(self):
+        self._mezclar()
+
+    def _mezclar(self):
         """
         Ordenar aleatoriamente las 52 cartas de la baraja
         """
+        random.shuffle(self.baraja)
         self.actual = 0
-        for index, _ in enumerate(self.baraja):
-            aleatorio = random.randint(0, 51)
-            self.baraja[index], self.baraja[aleatorio] = (
-                self.baraja[aleatorio],
-                self.baraja[index],
-            )
 
-    def pedir(self):
+    def dar_carta(self) -> Carta:
         """
-        Aumentar el valor de [actual] en 1.
-        Devolver la carta perteneciente a la posicion de [actual]
+        Retorna la carta [actual] moviendose a la siguiente
         """
-
+        # En caso de finalizar la baraja la mezcla de nuevo
         if self.actual == len(self.baraja) - 1:
-            print("** Nueva baraja")
-            self.mezclar()
+            self._mezclar()
 
         carta = self.baraja[self.actual]
         self.actual += 1

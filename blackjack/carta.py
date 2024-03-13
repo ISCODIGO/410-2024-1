@@ -1,42 +1,33 @@
+from enum import Enum
+
+
+class Figura(Enum):
+    CORAZON = "♥"
+    ESPADA = "♠"
+    DIAMANTE = "♦"
+    TREBOL = "♣"
+
+
 class Carta:
-    FIGURAS = (
-        "Corazones",
-        "Treboles",
-        "Diamantes",
-        "Espadas",
-    )
+    VALORES = {
+        "A": 11,
+        "DOS": 2,
+        "TRES": 3,
+        "CUATRO": 4,
+        "CINCO": 5,
+        "SEIS": 6,
+        "SIETE": 7,
+        "OCHO": 8,
+        "NUEVE": 9,
+        "DIEZ": 10,
+        "J": 10,
+        "Q": 10,
+        "K": 10,
+    }
 
-    VALORES = (
-        "As",
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        "J",
-        "Q",
-        "K",
-    )
-
-    def __init__(self, figura: str, valor: str):
+    def __init__(self, figura: Figura, valor: str):
         self.figura = figura
-        self.valor = valor
-        self.valor_numerico = None
-
-    @property
-    def figura(self):
-        return str(self._figura).upper()
-
-    @figura.setter
-    def figura(self, value):
-        if value not in Carta.FIGURAS:
-            raise ValueError(f"{value} es invalido como figura")
-
-        self._figura = value
+        self.valor = valor  # Esto llamará al setter de valor.
 
     @property
     def valor(self):
@@ -45,26 +36,14 @@ class Carta:
     @valor.setter
     def valor(self, value):
         if value not in Carta.VALORES:
-            raise ValueError(f"{value} es un invalido como valor")
-
+            raise ValueError(f"Valor '{value}' inválido.")
         self._valor = value
 
     def get_valor(self):
         """
-        De acuerdo al valor de la carta devolver su valor numerico:
-        As -> 11
-        J, Q, K -> 10
+        Devuelve el valor numérico de la carta.
         """
-        if self._valor == "As":
-            return 11
-
-        if self._valor in ["J", "Q", "K"]:
-            return 10
-
-        try:
-            return int(self._valor)
-        except TypeError:
-            raise ValueError("Valor indefinido")
+        return Carta.VALORES.get(self._valor, self._valor)
 
     def __str__(self) -> str:
-        return f"{self.valor}-{self.figura}"
+        return f"{self.valor} {self.figura.value}"
