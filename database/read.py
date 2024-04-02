@@ -12,7 +12,7 @@ conn = sqlite3.connect("test.db")
 
 cursor = conn.cursor()
 cursor.execute("""
-    select cuenta, nombre
+    select *
     from alumnos
 """)
 dato = cursor.fetchall()
