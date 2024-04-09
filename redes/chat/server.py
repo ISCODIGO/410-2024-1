@@ -1,8 +1,9 @@
 import socket
 import threading
 
+
 class Server:
-    def __init__(self, host='localhost', port=12345):
+    def __init__(self, host="localhost", port=12345):
         self.host = host
         self.port = port
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -28,9 +29,12 @@ class Server:
             client_socket, client_address = self.server_socket.accept()
             print(f"Conexión desde {client_address} ha sido establecida.")
 
-            client_handler = threading.Thread(target=self.handle_client, args=(client_socket,))
+            client_handler = threading.Thread(
+                target=self.handle_client, args=(client_socket,)
+            )
             client_handler.start()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     server = Server()
     server.start()

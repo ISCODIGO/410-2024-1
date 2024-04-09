@@ -1,8 +1,9 @@
 import socket
 import threading
 
+
 class Client:
-    def __init__(self, host='localhost', port=12345):
+    def __init__(self, host="localhost", port=12345):
         self.host = host
         self.port = port
         self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,6 +25,7 @@ class Client:
         threading.Thread(target=self.receive_messages).start()
         self.send_messages()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     client = Client()
     client.start()

@@ -3,11 +3,22 @@ CRUD ... C = create
 
 '''
 import sqlite3
+from constantes import DB_NOMBRE
 
 
-conn = sqlite3.connect("test.db")
+conn = sqlite3.connect(DB_NOMBRE)
 
 cursor = conn.cursor()
+cursor.execute("DROP TABLE IF EXISTS alumnos")
+cursor.execute("""
+    CREATE TABLE "alumnos" (
+        "cuenta"	TEXT NOT NULL UNIQUE,
+        "nombre"	TEXT NOT NULL,
+        "carrera"	TEXT NOT NULL,
+        "id"	INTEGER NOT NULL,
+        PRIMARY KEY("id" AUTOINCREMENT)
+    )
+""")
 cursor.execute("""
     insert into alumnos(cuenta, nombre, carrera)
     values('202310011213', 'Jaime Valeriano', 'Medicina')

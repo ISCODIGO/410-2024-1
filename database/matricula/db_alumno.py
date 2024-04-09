@@ -1,50 +1,38 @@
 from db import Database
 from alumno import Alumno
+from constantes import DB_NOMBRE
 
 
 class AlumnoDB(Database):
     def __init__(self, alumno: Alumno) -> None:
-        super().__init__("test.db")
+        super().__init__(DB_NOMBRE)
         self.alumno = alumno
 
     def create(self):
-        self.open()
-        self.cursor.execute(
+        super().create(
             """INSERT INTO alumnos(nombre, cuenta, carrera)
         VALUES(?, ?, ?)
         """,
             (self.alumno.nombre, self.alumno.cuenta, self.alumno.carrera),
         )
-        self.connection.commit()
-        self.connection.close()
 
     def read(self):
-        self.open()
-        self.cursor.execute(
+        return super().read(
             "SELECT * FROM alumnos WHERE cuenta = ?", (self.alumno.cuenta)
         )
-        data = self.cursor.fetchone()
-        self.connection.close()
-        return data
 
     def update(self):
-        self.open()
-        self.cursor.execute(
+        super().update(
             """UPDATE alumnos SET carrera = ?
             WHERE cuenta = ?
         """,
             (self.alumno.carrera, self.alumno.cuenta),
         )
-        self.connection.commit()
-        self.connection.close()
 
     def delete(self):
-        self.open()
-        self.cursor.execute(
+        super().delete(
             """DELETE FROM alumnos
             WHERE cuenta = ?
         """,
             (self.alumno.cuenta,),
         )
-        self.connection.commit()
-        self.connection.close()

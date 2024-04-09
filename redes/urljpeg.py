@@ -10,7 +10,7 @@ contador = 0
 imagen = b""
 
 while True:
-    datos = misock.recv(5120)
+    datos = misock.recv(512)
     if len(datos) < 1: break
     #time.sleep(0.25)
     contador = contador + len(datos)

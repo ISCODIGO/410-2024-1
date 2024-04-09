@@ -1,8 +1,8 @@
 import socket
 
-DOMAIN = "data.pr4e.org"
+DOMAIN = "unah.edu.hn"
 PORT = 80
-URL = "http://data.pr4e.org/romeo.txt"
+URL = "http://unah.edu.hn"
 
 # Create a socket object
 misock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
