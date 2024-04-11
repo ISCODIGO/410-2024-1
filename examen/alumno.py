@@ -43,10 +43,10 @@ estudiante.estudiar(0)
 
 class Prueba:
     nombre = None
+
     def algo(self):
         self.variable = 10
 
 
 p = Prueba()
 p.nombre = "Javier"
-
