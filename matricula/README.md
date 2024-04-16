@@ -23,5 +23,5 @@ python -m django startapp app
 ```
 Iniciar proyecto (servicio web)
 ```
-python -m django runserver
+python manage.py runserver
 ```
